@@ -1,34 +1,37 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"go-algorithms-datastructs/graphs"
+)
 
 func main() {
 
 	//Create the nodes
-	NodeA := Node{
+	NodeA := graphs.Node{
 		Key: "a",
 	}
 
-	NodeB := Node{
+	NodeB := graphs.Node{
 		Key: "b",
 	}
 
-	NodeC := Node{
+	NodeC := graphs.Node{
 		Key: "c",
 	}
 
-	NodeD := Node{
+	NodeD := graphs.Node{
 		Key: "d",
 	}
 
-	NodeE := Node{
+	NodeE := graphs.Node{
 		Key: "e",
 	}
 
-	NodeF := Node{
+	NodeF := graphs.Node{
 		Key: "f",
 	}
-	graph := Graph{
+	graph := graphs.Graph{
 		NodeA: {
 			NodeB,
 			NodeC,

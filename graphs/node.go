@@ -1,4 +1,4 @@
-package main
+package graphs
 
 type Node struct {
 	Visited bool

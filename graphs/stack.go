@@ -1,4 +1,4 @@
-package main
+package graphs
 
 type Stack[T any] struct {
 	data []T

@@ -1,4 +1,4 @@
-package main
+package graphs
 
 type Queue[T any] struct {
 	data []T
