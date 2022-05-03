@@ -1,6 +1,7 @@
 package test
 
 import (
+	"fmt"
 	"go-algorithms-datastructs/graphs"
 	"reflect"
 	"testing"
@@ -130,6 +131,34 @@ func TestConnectedCountAndBiggestComponent(t *testing.T) {
 	}
 
 	if expectedBiggestComponent != biggestComponentSize {
+		t.Fail()
+	}
+}
+
+func TestShortestPathLength(t *testing.T) {
+	nodeW := graphs.Node{Key: "w"}
+	nodeX := graphs.Node{Key: "x"}
+	nodeY := graphs.Node{Key: "y"}
+	nodeZ := graphs.Node{Key: "z"}
+	nodeV := graphs.Node{Key: "v"}
+
+	edges := []graphs.Edge{
+		{nodeW, nodeX},
+		{nodeX, nodeY},
+		{nodeZ, nodeY},
+		{nodeZ, nodeV},
+		{nodeW, nodeV},
+	}
+
+	graph := graphs.BuildUndirectedGraphFromEdges(edges)
+
+	shortestPathLength := graph.ShortestPathLength(nodeW, nodeZ)
+
+	expected := 2
+
+	fmt.Printf("shortest path %d", shortestPathLength)
+
+	if shortestPathLength != expected {
 		t.Fail()
 	}
 }

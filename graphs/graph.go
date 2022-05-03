@@ -61,8 +61,6 @@ func (g *Graph) DepthFirstSearch(sourceNode Node) {
 
 		if current, ok := stack.Pop(); ok {
 
-			fmt.Print(current.Key)
-
 			for _, v := range (*g)[current] {
 				stack.Push(v)
 			}
@@ -145,4 +143,45 @@ func (g *Graph) ConnectedCountAndBiggestComponent() (componentCount int, biggest
 	}
 
 	return componentCount, biggestComponentSize
+}
+
+func (g *Graph) ShortestPathLength(origin Node, dest Node) (shortestPath int) {
+	visitedNodes := make(map[string]bool)
+	distances := make(map[string]int)
+
+	queue := Queue[Node]{}
+
+	distances[origin.Key] = 0
+
+	queue.Add(origin)
+
+	visitedNodes[origin.Key] = true
+
+	shortestPath = -1
+
+	for !queue.IsEmpty() {
+
+		if current, ok := queue.Deque(); ok {
+			if current.Key == dest.Key {
+				shortestPath = distances[current.Key]
+				return shortestPath
+			}
+
+			for _, v := range (*g)[current] {
+
+				if wasVisited, _ := visitedNodes[v.Key]; wasVisited {
+					continue
+				}
+
+				visitedNodes[v.Key] = true
+
+				distances[v.Key] = distances[current.Key] + 1
+
+				queue.Add(v)
+			}
+		}
+
+	}
+
+	return shortestPath
 }
